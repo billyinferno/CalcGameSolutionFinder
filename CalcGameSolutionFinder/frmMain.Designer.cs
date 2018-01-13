@@ -46,6 +46,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.emotImageList = new System.Windows.Forms.ImageList(this.components);
             this.lblEmot = new System.Windows.Forms.Label();
+            this.lblLevel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnImageLst
@@ -73,6 +74,7 @@
             this.btnHint.TabIndex = 0;
             this.btnHint.Text = "HINT";
             this.btnHint.UseVisualStyleBackColor = true;
+            this.btnHint.Click += new System.EventHandler(this.btnHint_Click);
             // 
             // btnNum1
             // 
@@ -186,6 +188,7 @@
             this.btnGoTo.TabIndex = 6;
             this.btnGoTo.Text = "GO";
             this.btnGoTo.UseVisualStyleBackColor = true;
+            this.btnGoTo.Click += new System.EventHandler(this.btnGoTo_Click);
             // 
             // btnSolution
             // 
@@ -202,6 +205,7 @@
             this.btnSolution.TabIndex = 3;
             this.btnSolution.Text = "SOL";
             this.btnSolution.UseVisualStyleBackColor = true;
+            this.btnSolution.Click += new System.EventHandler(this.btnSolution_Click);
             // 
             // lblMoveCount
             // 
@@ -281,6 +285,17 @@
             this.lblEmot.Size = new System.Drawing.Size(48, 22);
             this.lblEmot.TabIndex = 13;
             // 
+            // lblLevel
+            // 
+            this.lblLevel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.lblLevel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLevel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(196)))), ((int)(((byte)(183)))));
+            this.lblLevel.Location = new System.Drawing.Point(21, 15);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(125, 15);
+            this.lblLevel.TabIndex = 14;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -289,6 +304,7 @@
             this.BackgroundImage = global::CalcGameSolutionFinder.Properties.Resources.scrnBg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(230, 353);
+            this.Controls.Add(this.lblLevel);
             this.Controls.Add(this.lblEmot);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.lblTarget);
@@ -332,6 +348,7 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.ImageList emotImageList;
         private System.Windows.Forms.Label lblEmot;
+        private System.Windows.Forms.Label lblLevel;
     }
 }
 
