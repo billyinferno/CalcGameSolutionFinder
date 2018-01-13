@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(719, 578);
             this.Name = "frmMain";
             this.Text = "Claculator Game Solution Finder";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResumeLayout(false);
 
         }
