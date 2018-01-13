@@ -13,8 +13,11 @@ namespace CalcGameSolutionFinder
 {
     public partial class frmMain : Form
     {
+        private frmSolutionFinder solFinder = new frmSolutionFinder();
+
         private List<clsGameData> GameData;
         private int CurrentGameData;
+        private bool IsLoadGameData;
 
         private int HintsNumber;
 
@@ -33,6 +36,10 @@ namespace CalcGameSolutionFinder
 
         private Label[] lblSegment = new Label[5];
 
+        #region UserFunction
+        /// <summary>
+        /// Constructor of the Main Game form.
+        /// </summary>
         public frmMain()
         {
             InitializeComponent();
@@ -41,8 +48,19 @@ namespace CalcGameSolutionFinder
 
             // load the game data
             this.LoadGameFile();
+
+            // set the is load game data into true, so we will load the game data
+            // when we run the application for the first time
+            this.IsLoadGameData = true;
+
+            // the Hint Number given is only 2, and it will be increase every 10 level
+            this.HintsNumber = 2;
         }
 
+        /// <summary>
+        /// This function will load the GameFile.txt from the same location as the .exe files, and generate the list of GameData.
+        /// If the GameData is failed to load, it will be logged to the Console Window.
+        /// </summary>
         private void LoadGameFile()
         {
             // check if the Game File is exists or not?
@@ -96,10 +114,33 @@ namespace CalcGameSolutionFinder
             this.CurrentGameData = -1;
         }
 
-        private void GetGameData()
+        /// <summary>
+        /// This function will get the Game Data that we loaded from the Game Data File.
+        /// The Game Data will have at least one data, since if we cannot load the Game Data File, we will
+        /// insert a dummy game data to ensure that at least 1 game data is available on the list.
+        /// </summary>
+        private bool GetGameData()
         {
-            // add current game data
-            this.CurrentGameData += 1;
+            // // check whether we need to add the game data or not?
+            if (IsLoadGameData)
+            {
+                this.CurrentGameData += 1;
+
+                // check if we already got 10 level finished, if yes add 1 to the hint number
+                if ((this.CurrentGameData + 1) % 10 == 0)
+                {
+                    // if currently Hints Number is less or equal with zero, it means that
+                    // the hint button is disabled, so now enabled the button before we add
+                    // the hint number.
+                    if (this.HintsNumber <= 0)
+                    {
+                        this.btnHint.Enabled = true;
+                    }
+
+                    // add the hint number.
+                    this.HintsNumber += 1;
+                }
+            }
 
             // check if the current game data number is below or same as the
             // length of the game data?
@@ -109,18 +150,28 @@ namespace CalcGameSolutionFinder
                 this.CurrentNumber = this.GameData[this.CurrentGameData].CurrentNumber;
                 this.TargetNumber = this.GameData[this.CurrentGameData].TargetNumber;
                 this.MaximumMoves = this.GameData[this.CurrentGameData].MaximumMoves;
+                return true;
             }
             else
             {
                 // No more game data
                 MessageBox.Show("No More Game Data!", "Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
             }
         }
 
+        /// <summary>
+        /// Start the Calculator Game.
+        /// Here we will try to get the game data, load all the button and initialize variable
+        /// needed for the game.
+        /// </summary>
         private void GameStart()
         {
             // get the game data
-            this.GetGameData();
+            if (!this.GetGameData())
+            {
+                return;
+            }
 
             // load the button
             this.LoadButton();
@@ -131,7 +182,7 @@ namespace CalcGameSolutionFinder
             // set the emoticon image
             this.lblEmot.ImageIndex = 0;
 
-            // refresh the display everytime game start
+            // refresh the display everytime game starts
             this.RefreshDisplay();
 
             // enabled all the button and hide the OK button
@@ -139,9 +190,15 @@ namespace CalcGameSolutionFinder
             this.btnOK.Visible = false;
         }
 
+        /// <summary>
+        /// This will disable all the button on the Game form.
+        /// </summary>
         private void DisableAllButton()
         {
-            this.btnHint.Enabled = false;
+            if (this.HintsNumber > 0)
+            {
+                this.btnHint.Enabled = false;
+            }
             this.btnSolution.Enabled = false;
             this.btnGoTo.Enabled = false;
             this.btnNum1.Enabled = false;
@@ -152,9 +209,15 @@ namespace CalcGameSolutionFinder
             this.btnClear.Enabled = false;
         }
 
+        /// <summary>
+        /// This will enable all the button on the Game form.
+        /// </summary>
         private void EnableAllButton()
         {
-            this.btnHint.Enabled = true;
+            if (this.HintsNumber > 0)
+            {
+                this.btnHint.Enabled = true;
+            }
             this.btnSolution.Enabled = true;
             this.btnGoTo.Enabled = true;
             this.btnNum1.Enabled = true;
@@ -165,10 +228,15 @@ namespace CalcGameSolutionFinder
             this.btnClear.Enabled = true;
         }
 
+        /// <summary>
+        /// This function is used to refresh all the components of the game,
+        /// such as Label, Segment Display, etc.
+        /// </summary>
         private void RefreshDisplay()
         {
             // refresh the display everytime event occurs
             this.lblMoveCount.Text = this.MaximumMoves.ToString();
+            this.lblLevel.Text = "LEVEL : " + (this.CurrentGameData + 1).ToString();
             this.WriteSegment();
 
             // check if we already reach the target, if not check the moves?
@@ -180,6 +248,9 @@ namespace CalcGameSolutionFinder
 
                 // to load the next stage
                 this.btnOK.Visible = true;
+
+                // load the game data
+                this.IsLoadGameData = true;
             }
             else
             {
@@ -193,10 +264,17 @@ namespace CalcGameSolutionFinder
 
                     // show the died emoticon
                     this.lblEmot.ImageIndex = 1;
+
+                    // no need to load the game data
+                    this.IsLoadGameData = false;
                 }
             }
         }
 
+        /// <summary>
+        /// Initialize the Segment Data that will be used to showed the Current Number
+        /// on the Game form.
+        /// </summary>
         private void InitializeSegment()
         {
             int x = 30;
@@ -225,6 +303,9 @@ namespace CalcGameSolutionFinder
             }
         }
 
+        /// <summary>
+        /// Write Segment Data on the Game form based on the Current Number.
+        /// </summary>
         private void WriteSegment()
         {
             // convert current number into string
@@ -383,6 +464,12 @@ namespace CalcGameSolutionFinder
             }
         }
 
+        /// <summary>
+        /// Main function of the Button Click, that will determine what kind of action
+        /// that will be performed when the Button Clicked.
+        /// </summary>
+        /// <param name="ButtonTag">Operator that will be performed</param>
+        /// <param name="ButtonText">Number that will be processed</param>
         private void ProcessButton(string ButtonTag, string ButtonText)
         {
             int Number = 0;
@@ -432,7 +519,9 @@ namespace CalcGameSolutionFinder
             // refresh the display
             this.RefreshDisplay();
         }
+        #endregion
 
+        #region FormFunction
         private void frmMain_Load(object sender, EventArgs e)
         {
             int test_num = 10;
@@ -488,6 +577,8 @@ namespace CalcGameSolutionFinder
         private void btnClear_Click(object sender, EventArgs e)
         {
             // clear everything
+            // no need to load the game data
+            this.IsLoadGameData = false;
             this.GameStart();
         }
 
@@ -495,7 +586,65 @@ namespace CalcGameSolutionFinder
         {
             // load the next game data
             // and start the game again
+            this.IsLoadGameData = true;
             this.GameStart();
+        }
+
+        private void btnSolution_Click(object sender, EventArgs e)
+        {
+            // show the solution form
+            solFinder.ShowDialog();
+        }
+        #endregion
+
+        private void btnGoTo_Click(object sender, EventArgs e)
+        {
+            // directly go to some level number
+            ///TODO:
+        }
+
+        private void btnHint_Click(object sender, EventArgs e)
+        {
+            // directly click the button based on the hint listed at the game data
+            if (this.HintsNumber > 0)
+            {
+                int HintPosition = this.GameData[this.CurrentGameData].MaximumMoves - this.MaximumMoves;
+
+                // check if Hint Data is more than HintPosition?
+                if (this.GameData[this.CurrentGameData].HintData.Length > HintPosition)
+                {
+                    // process the hints data, check which button is equal with the Hint
+                    if (btnNum1.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                    {
+                        this.btnNum1_Click(sender, e);
+                    }
+                    else if (btnNum2.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                    {
+                        this.btnNum2_Click(sender, e);
+                    }
+                    else if (btnNum3.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                    {
+                        this.btnNum3_Click(sender, e);
+                    }
+                    else if (btnOp1.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                    {
+                        this.btnOp1_Click(sender, e);
+                    }
+                    else if (btnOp2.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                    {
+                        this.btnOp2_Click(sender, e);
+                    }
+
+                    // substract hint number, since we already used the hint
+                    this.HintsNumber -= 1;
+
+                    // if hint number is already 0, then disabled the hint button
+                    if (this.HintsNumber <= 0)
+                    {
+                        this.btnHint.Enabled = false;
+                    }
+                }
+            }
         }
     }
 }
