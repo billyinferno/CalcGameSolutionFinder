@@ -38,11 +38,14 @@
             this.btnNum2 = new System.Windows.Forms.Button();
             this.btnOp2 = new System.Windows.Forms.Button();
             this.btnNum3 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnGoTo = new System.Windows.Forms.Button();
             this.btnSolution = new System.Windows.Forms.Button();
             this.lblMoveCount = new System.Windows.Forms.Label();
             this.lblTarget = new System.Windows.Forms.Label();
             this.txtImageList = new System.Windows.Forms.ImageList(this.components);
+            this.btnOK = new System.Windows.Forms.Button();
+            this.emotImageList = new System.Windows.Forms.ImageList(this.components);
+            this.lblEmot = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnImageLst
@@ -168,21 +171,21 @@
             this.btnNum3.UseVisualStyleBackColor = true;
             this.btnNum3.Click += new System.EventHandler(this.btnNum3_Click);
             // 
-            // button9
+            // btnGoTo
             // 
-            this.button9.AutoSize = true;
-            this.button9.Enabled = false;
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button9.ImageIndex = 3;
-            this.button9.ImageList = this.btnImageLst;
-            this.button9.Location = new System.Drawing.Point(18, 282);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(61, 56);
-            this.button9.TabIndex = 6;
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnGoTo.AutoSize = true;
+            this.btnGoTo.FlatAppearance.BorderSize = 0;
+            this.btnGoTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGoTo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGoTo.ForeColor = System.Drawing.Color.White;
+            this.btnGoTo.ImageIndex = 2;
+            this.btnGoTo.ImageList = this.btnImageLst;
+            this.btnGoTo.Location = new System.Drawing.Point(18, 282);
+            this.btnGoTo.Name = "btnGoTo";
+            this.btnGoTo.Size = new System.Drawing.Size(61, 56);
+            this.btnGoTo.TabIndex = 6;
+            this.btnGoTo.Text = "GO";
+            this.btnGoTo.UseVisualStyleBackColor = true;
             // 
             // btnSolution
             // 
@@ -243,6 +246,41 @@
             this.txtImageList.Images.SetKeyName(10, "8Seg_9.png");
             this.txtImageList.Images.SetKeyName(11, "8Seg_minus.png");
             // 
+            // btnOK
+            // 
+            this.btnOK.AutoSize = true;
+            this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.ForeColor = System.Drawing.Color.White;
+            this.btnOK.ImageIndex = 1;
+            this.btnOK.ImageList = this.btnImageLst;
+            this.btnOK.Location = new System.Drawing.Point(152, 158);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(61, 56);
+            this.btnOK.TabIndex = 12;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Visible = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // emotImageList
+            // 
+            this.emotImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("emotImageList.ImageStream")));
+            this.emotImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.emotImageList.Images.SetKeyName(0, "emot_happy.png");
+            this.emotImageList.Images.SetKeyName(1, "emot_die.png");
+            // 
+            // lblEmot
+            // 
+            this.lblEmot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(196)))), ((int)(((byte)(183)))));
+            this.lblEmot.ImageIndex = 0;
+            this.lblEmot.ImageList = this.emotImageList;
+            this.lblEmot.Location = new System.Drawing.Point(32, 48);
+            this.lblEmot.Name = "lblEmot";
+            this.lblEmot.Size = new System.Drawing.Size(48, 22);
+            this.lblEmot.TabIndex = 13;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -251,11 +289,13 @@
             this.BackgroundImage = global::CalcGameSolutionFinder.Properties.Resources.scrnBg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(230, 353);
+            this.Controls.Add(this.lblEmot);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.lblTarget);
             this.Controls.Add(this.lblMoveCount);
             this.Controls.Add(this.btnOp2);
             this.Controls.Add(this.btnNum3);
-            this.Controls.Add(this.button9);
+            this.Controls.Add(this.btnGoTo);
             this.Controls.Add(this.btnOp1);
             this.Controls.Add(this.btnNum2);
             this.Controls.Add(this.btnSolution);
@@ -284,11 +324,14 @@
         private System.Windows.Forms.Button btnNum2;
         private System.Windows.Forms.Button btnOp2;
         private System.Windows.Forms.Button btnNum3;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnGoTo;
         private System.Windows.Forms.Button btnSolution;
         private System.Windows.Forms.Label lblMoveCount;
         private System.Windows.Forms.Label lblTarget;
         private System.Windows.Forms.ImageList txtImageList;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.ImageList emotImageList;
+        private System.Windows.Forms.Label lblEmot;
     }
 }
 

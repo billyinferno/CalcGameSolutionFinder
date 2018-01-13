@@ -22,7 +22,11 @@ namespace CalcGameSolutionFinder
         public override int ProcessButton(int CurrentNumber)
         {
             // first let's convert the CurrentNumber into string.
-            string sCurrentNumber = CurrentNumber.ToString();
+            string sCurrentNumber = "";
+            if (CurrentNumber > 0)
+            {
+               sCurrentNumber = CurrentNumber.ToString();
+            }
 
             // then convert number set on the class into string.
             string sNumber = Number.ToString();

@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CalcGameSolutionFinder
 {
     public partial class frmMain : Form
     {
-        private bool IsGameOver;
-        private bool IsTargetAchieved;
+        private List<clsGameData> GameData;
+        private int CurrentGameData;
+
         private int HintsNumber;
 
         private string ButtonString;
@@ -36,15 +38,89 @@ namespace CalcGameSolutionFinder
             InitializeComponent();
 
             this.InitializeSegment();
+
+            // load the game data
+            this.LoadGameFile();
+        }
+
+        private void LoadGameFile()
+        {
+            // check if the Game File is exists or not?
+            if (File.Exists("GameFile.txt")) {
+                // initialize the GameData
+                this.GameData = new List<clsGameData>();
+
+                // load the game file
+                string[] lines = File.ReadAllLines("GameFile.txt");
+                foreach (string line in lines)
+                {
+                    if (line.Trim().Length > 0)
+                    {
+                        // create new game data
+                        clsGameData newGameData = new clsGameData(line);
+                        if (newGameData.IsLoaded)
+                        {
+                            this.GameData.Add(newGameData);
+                        }
+                    }
+                }
+
+                // check if we got game data or not?
+                if (this.GameData.Count <= 0)
+                {
+                    // add dummy data
+                    MessageBox.Show("Cannot load GameFile data, load Dummy Game.", "Load Game Data Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    // dummy data (this should be loaded from game file)
+                    clsGameData newGameData = new clsGameData("+1,+2,N3,+/-,<<#100#10333#4");
+
+                    // add dummy data to the list
+                    this.GameData = new List<clsGameData>();
+                    this.GameData.Add(newGameData);
+                }
+            }
+            else
+            {
+                // show message box
+                MessageBox.Show("Cannot found GameFile data, load Dummy Game.", "No Game Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // dummy data (this should be loaded from game file)
+                clsGameData newGameData = new clsGameData("+1,+2,N3,+/-,<<#100#10333#4");
+
+                // add dummy data to the list
+                this.GameData = new List<clsGameData>();
+                this.GameData.Add(newGameData);
+            }
+
+            // show the first game data
+            this.CurrentGameData = -1;
+        }
+
+        private void GetGameData()
+        {
+            // add current game data
+            this.CurrentGameData += 1;
+
+            // check if the current game data number is below or same as the
+            // length of the game data?
+            if (this.CurrentGameData < this.GameData.Count)
+            {
+                this.ButtonString = this.GameData[this.CurrentGameData].ButtonString;
+                this.CurrentNumber = this.GameData[this.CurrentGameData].CurrentNumber;
+                this.TargetNumber = this.GameData[this.CurrentGameData].TargetNumber;
+                this.MaximumMoves = this.GameData[this.CurrentGameData].MaximumMoves;
+            }
+            else
+            {
+                // No more game data
+                MessageBox.Show("No More Game Data!", "Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void GameStart()
         {
-            // dummy data (this should be loaded from game file)
-            this.ButtonString = "+1,+2,N3,+/-,<<";
-            this.CurrentNumber = 100;
-            this.MaximumMoves = 4;
-            this.TargetNumber = 10333;
+            // get the game data
+            this.GetGameData();
 
             // load the button
             this.LoadButton();
@@ -52,12 +128,41 @@ namespace CalcGameSolutionFinder
             // set the target number
             this.lblTarget.Text = this.TargetNumber.ToString();
 
-            // set the game over and target achieve as false
-            this.IsGameOver = false;
-            this.IsTargetAchieved = false;
+            // set the emoticon image
+            this.lblEmot.ImageIndex = 0;
 
             // refresh the display everytime game start
             this.RefreshDisplay();
+
+            // enabled all the button and hide the OK button
+            this.EnableAllButton();
+            this.btnOK.Visible = false;
+        }
+
+        private void DisableAllButton()
+        {
+            this.btnHint.Enabled = false;
+            this.btnSolution.Enabled = false;
+            this.btnGoTo.Enabled = false;
+            this.btnNum1.Enabled = false;
+            this.btnNum2.Enabled = false;
+            this.btnNum3.Enabled = false;
+            this.btnOp1.Enabled = false;
+            this.btnOp2.Enabled = false;
+            this.btnClear.Enabled = false;
+        }
+
+        private void EnableAllButton()
+        {
+            this.btnHint.Enabled = true;
+            this.btnSolution.Enabled = true;
+            this.btnGoTo.Enabled = true;
+            this.btnNum1.Enabled = true;
+            this.btnNum2.Enabled = true;
+            this.btnNum3.Enabled = true;
+            this.btnOp1.Enabled = true;
+            this.btnOp2.Enabled = true;
+            this.btnClear.Enabled = true;
         }
 
         private void RefreshDisplay()
@@ -70,7 +175,11 @@ namespace CalcGameSolutionFinder
             // whether we can still proceed the game or not?
             if (this.CurrentNumber == this.TargetNumber)
             {
-                this.IsTargetAchieved = true;
+                // target is achieved, disabled all the button and bring the OK button
+                this.DisableAllButton();
+
+                // to load the next stage
+                this.btnOK.Visible = true;
             }
             else
             {
@@ -78,7 +187,12 @@ namespace CalcGameSolutionFinder
                 if (this.MaximumMoves <= 0)
                 {
                     // no more moves, put as game over
-                    this.IsGameOver = true;
+                    // disable all button, except the clear button
+                    this.DisableAllButton();
+                    this.btnClear.Enabled = true;
+
+                    // show the died emoticon
+                    this.lblEmot.ImageIndex = 1;
                 }
             }
         }
@@ -116,6 +230,12 @@ namespace CalcGameSolutionFinder
             // convert current number into string
             string sCurrentNumber = this.CurrentNumber.ToString();
             string SegmentData;
+
+            // remove all the segment data first
+            for (int i = 0; i < 5; i++)
+            {
+                this.lblSegment[i].ImageIndex = 0;
+            }
 
             // maximum length should be 5
             if (sCurrentNumber.Length > 5)
@@ -368,6 +488,13 @@ namespace CalcGameSolutionFinder
         private void btnClear_Click(object sender, EventArgs e)
         {
             // clear everything
+            this.GameStart();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            // load the next game data
+            // and start the game again
             this.GameStart();
         }
     }

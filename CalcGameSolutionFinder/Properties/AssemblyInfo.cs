@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("CalcGameSolutionFinder")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("The Calculator Game with Solution Finder")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Adi Martha")]
 [assembly: AssemblyProduct("CalcGameSolutionFinder")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
