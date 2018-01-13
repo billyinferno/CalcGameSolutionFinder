@@ -36,6 +36,11 @@
             this.btnAddNumber = new System.Windows.Forms.Button();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.lstNumber = new System.Windows.Forms.ListBox();
+            this.btnClearList = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnImageLst
@@ -96,7 +101,7 @@
             this.checkBox5.ForeColor = System.Drawing.Color.White;
             this.checkBox5.ImageKey = "btnOrange";
             this.checkBox5.ImageList = this.btnImageLst;
-            this.checkBox5.Location = new System.Drawing.Point(164, 9);
+            this.checkBox5.Location = new System.Drawing.Point(12, 77);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(70, 62);
             this.checkBox5.TabIndex = 5;
@@ -111,7 +116,7 @@
             this.checkBox6.ForeColor = System.Drawing.Color.White;
             this.checkBox6.ImageKey = "btnOrange";
             this.checkBox6.ImageList = this.btnImageLst;
-            this.checkBox6.Location = new System.Drawing.Point(240, 9);
+            this.checkBox6.Location = new System.Drawing.Point(88, 77);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(70, 62);
             this.checkBox6.TabIndex = 6;
@@ -119,19 +124,82 @@
             this.checkBox6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox6.UseVisualStyleBackColor = true;
             // 
+            // lstNumber
+            // 
+            this.lstNumber.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstNumber.FormattingEnabled = true;
+            this.lstNumber.ItemHeight = 14;
+            this.lstNumber.Location = new System.Drawing.Point(169, 12);
+            this.lstNumber.Name = "lstNumber";
+            this.lstNumber.Size = new System.Drawing.Size(151, 60);
+            this.lstNumber.TabIndex = 10;
+            // 
+            // btnClearList
+            // 
+            this.btnClearList.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearList.Location = new System.Drawing.Point(326, 12);
+            this.btnClearList.Name = "btnClearList";
+            this.btnClearList.Size = new System.Drawing.Size(75, 60);
+            this.btnClearList.TabIndex = 11;
+            this.btnClearList.Text = "CLEAR";
+            this.btnClearList.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Beige;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.ImageKey = "btnRed";
+            this.button1.ImageList = this.btnImageLst;
+            this.button1.Location = new System.Drawing.Point(164, 78);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(59, 57);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "GO";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // listBox1
+            // 
+            this.listBox1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 14;
+            this.listBox1.Location = new System.Drawing.Point(12, 173);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(389, 200);
+            this.listBox1.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 151);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(141, 19);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "SOLUTION STEP";
+            // 
             // frmSolutionFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
-            this.ClientSize = new System.Drawing.Size(538, 385);
+            this.ClientSize = new System.Drawing.Size(415, 385);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnClearList);
+            this.Controls.Add(this.lstNumber);
             this.Controls.Add(this.btnAddNumber);
             this.Controls.Add(this.txtNumber);
             this.Controls.Add(this.cmbOperator);
             this.Controls.Add(this.checkBox6);
             this.Controls.Add(this.checkBox5);
+            this.MaximizeBox = false;
             this.Name = "frmSolutionFinder";
-            this.Text = "frmSolutionFinder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Solution Finder";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,5 +212,10 @@
         private System.Windows.Forms.Button btnAddNumber;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.ListBox lstNumber;
+        private System.Windows.Forms.Button btnClearList;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
