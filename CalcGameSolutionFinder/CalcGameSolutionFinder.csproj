@@ -47,8 +47,12 @@
   <ItemGroup>
     <Compile Include="clsAddButton.cs" />
     <Compile Include="clsCalcButton.cs" />
+    <Compile Include="clsDivideButton.cs" />
+    <Compile Include="clsMinusButton.cs" />
+    <Compile Include="clsMultiplyButton.cs" />
     <Compile Include="clsNumberButton.cs" />
     <Compile Include="clsPlusMinusButton.cs" />
+    <Compile Include="clsShiftButton.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +72,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -81,6 +86,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scrnBg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
