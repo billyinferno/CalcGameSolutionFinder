@@ -28,19 +28,121 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSolutionFinder));
+            this.btnImageLst = new System.Windows.Forms.ImageList(this.components);
+            this.cmbOperator = new System.Windows.Forms.ComboBox();
+            this.txtNumber = new System.Windows.Forms.TextBox();
+            this.btnAddNumber = new System.Windows.Forms.Button();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
+            // 
+            // btnImageLst
+            // 
+            this.btnImageLst.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("btnImageLst.ImageStream")));
+            this.btnImageLst.TransparentColor = System.Drawing.Color.Transparent;
+            this.btnImageLst.Images.SetKeyName(0, "btnOrange");
+            this.btnImageLst.Images.SetKeyName(1, "btnRed");
+            this.btnImageLst.Images.SetKeyName(2, "btnBlue");
+            this.btnImageLst.Images.SetKeyName(3, "btnGrey");
+            this.btnImageLst.Images.SetKeyName(4, "btnDarkGray");
+            // 
+            // cmbOperator
+            // 
+            this.cmbOperator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOperator.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOperator.FormattingEnabled = true;
+            this.cmbOperator.Items.AddRange(new object[] {
+            "+",
+            "-",
+            "*",
+            "/",
+            "N"});
+            this.cmbOperator.Location = new System.Drawing.Point(12, 28);
+            this.cmbOperator.Name = "cmbOperator";
+            this.cmbOperator.Size = new System.Drawing.Size(40, 27);
+            this.cmbOperator.TabIndex = 7;
+            // 
+            // txtNumber
+            // 
+            this.txtNumber.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumber.Location = new System.Drawing.Point(58, 28);
+            this.txtNumber.MaxLength = 1;
+            this.txtNumber.Name = "txtNumber";
+            this.txtNumber.Size = new System.Drawing.Size(40, 27);
+            this.txtNumber.TabIndex = 8;
+            // 
+            // btnAddNumber
+            // 
+            this.btnAddNumber.BackColor = System.Drawing.Color.Beige;
+            this.btnAddNumber.FlatAppearance.BorderSize = 0;
+            this.btnAddNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddNumber.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddNumber.ForeColor = System.Drawing.Color.White;
+            this.btnAddNumber.ImageKey = "btnDarkGray";
+            this.btnAddNumber.ImageList = this.btnImageLst;
+            this.btnAddNumber.Location = new System.Drawing.Point(104, 12);
+            this.btnAddNumber.Name = "btnAddNumber";
+            this.btnAddNumber.Size = new System.Drawing.Size(59, 57);
+            this.btnAddNumber.TabIndex = 9;
+            this.btnAddNumber.Text = "ADD";
+            this.btnAddNumber.UseVisualStyleBackColor = false;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.checkBox5.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox5.ForeColor = System.Drawing.Color.White;
+            this.checkBox5.ImageKey = "btnOrange";
+            this.checkBox5.ImageList = this.btnImageLst;
+            this.checkBox5.Location = new System.Drawing.Point(164, 9);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(70, 62);
+            this.checkBox5.TabIndex = 5;
+            this.checkBox5.Text = "1";
+            this.checkBox5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.checkBox6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox6.ForeColor = System.Drawing.Color.White;
+            this.checkBox6.ImageKey = "btnOrange";
+            this.checkBox6.ImageList = this.btnImageLst;
+            this.checkBox6.Location = new System.Drawing.Point(240, 9);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(70, 62);
+            this.checkBox6.TabIndex = 6;
+            this.checkBox6.Text = "1";
+            this.checkBox6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox6.UseVisualStyleBackColor = true;
             // 
             // frmSolutionFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(787, 385);
+            this.BackColor = System.Drawing.Color.Beige;
+            this.ClientSize = new System.Drawing.Size(538, 385);
+            this.Controls.Add(this.btnAddNumber);
+            this.Controls.Add(this.txtNumber);
+            this.Controls.Add(this.cmbOperator);
+            this.Controls.Add(this.checkBox6);
+            this.Controls.Add(this.checkBox5);
             this.Name = "frmSolutionFinder";
             this.Text = "frmSolutionFinder";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+        private System.Windows.Forms.ImageList btnImageLst;
+        private System.Windows.Forms.ComboBox cmbOperator;
+        private System.Windows.Forms.TextBox txtNumber;
+        private System.Windows.Forms.Button btnAddNumber;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox6;
     }
 }
