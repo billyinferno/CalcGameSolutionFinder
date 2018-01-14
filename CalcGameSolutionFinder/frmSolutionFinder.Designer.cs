@@ -85,9 +85,9 @@
             // 
             this.txtNumber.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumber.Location = new System.Drawing.Point(58, 28);
-            this.txtNumber.MaxLength = 2;
+            this.txtNumber.MaxLength = 4;
             this.txtNumber.Name = "txtNumber";
-            this.txtNumber.Size = new System.Drawing.Size(40, 27);
+            this.txtNumber.Size = new System.Drawing.Size(100, 27);
             this.txtNumber.TabIndex = 8;
             // 
             // btnAddNumber
@@ -99,7 +99,7 @@
             this.btnAddNumber.ForeColor = System.Drawing.Color.White;
             this.btnAddNumber.ImageKey = "btnDarkGray";
             this.btnAddNumber.ImageList = this.btnImageLst;
-            this.btnAddNumber.Location = new System.Drawing.Point(104, 12);
+            this.btnAddNumber.Location = new System.Drawing.Point(164, 12);
             this.btnAddNumber.Name = "btnAddNumber";
             this.btnAddNumber.Size = new System.Drawing.Size(59, 57);
             this.btnAddNumber.TabIndex = 9;
@@ -112,9 +112,9 @@
             this.lstNumber.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstNumber.FormattingEnabled = true;
             this.lstNumber.ItemHeight = 14;
-            this.lstNumber.Location = new System.Drawing.Point(169, 12);
+            this.lstNumber.Location = new System.Drawing.Point(232, 12);
             this.lstNumber.Name = "lstNumber";
-            this.lstNumber.Size = new System.Drawing.Size(151, 60);
+            this.lstNumber.Size = new System.Drawing.Size(88, 60);
             this.lstNumber.TabIndex = 10;
             // 
             // btnGo

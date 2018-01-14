@@ -33,6 +33,7 @@ namespace CalcGameSolutionFinder
         private clsMultiplyButton btnMultiply = new clsMultiplyButton(0);
         private clsPlusMinusButton btnPlusMinus = new clsPlusMinusButton();
         private clsShiftButton btnShift = new clsShiftButton();
+        private clsReverseButton btnReverse = new clsReverseButton();
 
         private Label[] lblSegment = new Label[5];
 
@@ -199,13 +200,12 @@ namespace CalcGameSolutionFinder
             {
                 this.btnHint.Enabled = false;
             }
-            this.btnSolution.Enabled = false;
             this.btnGoTo.Enabled = false;
-            this.btnNum1.Enabled = false;
-            this.btnNum2.Enabled = false;
-            this.btnNum3.Enabled = false;
-            this.btnOp1.Enabled = false;
-            this.btnOp2.Enabled = false;
+            this.btnCalc1.Enabled = false;
+            this.btnCalc2.Enabled = false;
+            this.btnCalc3.Enabled = false;
+            this.btnCalc4.Enabled = false;
+            this.btnCalc5.Enabled = false;
             this.btnClear.Enabled = false;
         }
 
@@ -218,13 +218,12 @@ namespace CalcGameSolutionFinder
             {
                 this.btnHint.Enabled = true;
             }
-            this.btnSolution.Enabled = true;
             this.btnGoTo.Enabled = true;
-            this.btnNum1.Enabled = true;
-            this.btnNum2.Enabled = true;
-            this.btnNum3.Enabled = true;
-            this.btnOp1.Enabled = true;
-            this.btnOp2.Enabled = true;
+            this.btnCalc1.Enabled = true;
+            this.btnCalc2.Enabled = true;
+            this.btnCalc3.Enabled = true;
+            this.btnCalc4.Enabled = true;
+            this.btnCalc5.Enabled = true;
             this.btnClear.Enabled = true;
         }
 
@@ -378,13 +377,16 @@ namespace CalcGameSolutionFinder
             // button on the form.
             string[] btnArr = this.ButtonString.Split(new string[] { "," }, StringSplitOptions.None);
             string chkOperator;
+            string btnLabel;
+            int btnImageIndex = 0;
 
             // loop throught the button array
             for (int i = btnArr.GetLowerBound(0); i <= btnArr.GetUpperBound(0); i++)
             {
                 // check if button array have value or not?
                 // if not then it means that this button is disabled.
-                if (btnArr[i].Length > 0) {
+                if (btnArr[i].Length > 0)
+                {
                     // check if the first byte is operator?
                     chkOperator = btnArr[i].Substring(0, 1);
                     switch (chkOperator)
@@ -395,38 +397,69 @@ namespace CalcGameSolutionFinder
                         case "/":
                         case "P":
                         case "<":
-                            // continue the process
+                        case "R":
+                            btnLabel = btnArr[i];
+                            break;
+                        case "#":
+                            btnLabel = "*-" + btnArr[i].Substring(1, btnArr[i].Length - 1);
+                            break;
+                        case "\\":
+                            btnLabel = "/-" + btnArr[i].Substring(1, btnArr[i].Length - 1);
                             break;
                         case "N":
                             // for number we only need to add the number no need to add the "N"
-                            btnArr[i] = btnArr[i].Substring(1, 1);
+                            btnLabel = btnArr[i].Substring(1, btnArr[i].Length - 1);
                             break;
                         default:
                             throw new Exception("Unknown Button");
+                    }
+
+                    switch (chkOperator)
+                    {
+                        case "+":
+                        case "-":
+                        case "*":
+                        case "#":
+                        case "\\":
+                            btnImageIndex = 4;
+                            break;
+                        case "N":
+                            btnImageIndex = 6;
+                            break;
+                        case "P":
+                        case "<":
+                        case "R":
+                            btnImageIndex = 0;
+                            break;
                     }
 
                     // write the button
                     switch (i)
                     {
                         case 0:
-                            btnNum1.Text = btnArr[i];
-                            btnNum1.Tag = chkOperator;
+                            btnCalc1.Text = btnLabel;
+                            btnCalc1.Tag = btnArr[i];
+                            btnCalc1.ImageIndex = btnImageIndex;
                             break;
                         case 1:
-                            btnNum2.Text = btnArr[i];
-                            btnNum2.Tag = chkOperator;
+                            btnCalc2.Text = btnLabel;
+                            btnCalc2.Tag = btnArr[i];
+                            btnCalc2.ImageIndex = btnImageIndex;
                             break;
                         case 2:
-                            btnNum3.Text = btnArr[i];
-                            btnNum3.Tag = chkOperator;
+                            btnCalc3.Text = btnLabel;
+                            btnCalc3.Tag = btnArr[i];
+                            btnCalc3.ImageIndex = btnImageIndex;
                             break;
                         case 3:
-                            btnOp1.Text = btnArr[i];
-                            btnOp1.Tag = chkOperator;
+                            btnCalc4.Text = btnLabel;
+                            btnCalc4.Tag = btnArr[i];
+                            btnCalc4.ImageIndex = btnImageIndex;
                             break;
                         case 4:
-                            btnOp2.Text = btnArr[i];
-                            btnOp2.Tag = chkOperator;
+                            btnCalc5.Text = btnLabel;
+                            btnCalc5.Tag = btnArr[i];
+                            btnCalc5.ImageIndex = btnImageIndex;
                             break;
                         default:
                             throw new Exception("Button Number > 5, Maximum Button Number is 5");
@@ -438,24 +471,29 @@ namespace CalcGameSolutionFinder
                     switch (i)
                     {
                         case 0:
-                            btnNum1.Enabled = false;
-                            btnNum1.ImageIndex = 3;
+                            btnCalc1.Text = "";
+                            btnCalc1.Enabled = false;
+                            btnCalc1.ImageIndex = 3;
                             break;
                         case 1:
-                            btnNum2.Enabled = false;
-                            btnNum2.ImageIndex = 3;
+                            btnCalc2.Text = "";
+                            btnCalc2.Enabled = false;
+                            btnCalc2.ImageIndex = 3;
                             break;
                         case 2:
-                            btnNum3.Enabled = false;
-                            btnNum3.ImageIndex = 3;
+                            btnCalc3.Text = "";
+                            btnCalc3.Enabled = false;
+                            btnCalc3.ImageIndex = 3;
                             break;
                         case 3:
-                            btnOp1.Enabled = false;
-                            btnOp1.ImageIndex = 3;
+                            btnCalc4.Text = "";
+                            btnCalc4.Enabled = false;
+                            btnCalc4.ImageIndex = 3;
                             break;
                         case 4:
-                            btnOp2.Enabled = false;
-                            btnOp2.ImageIndex = 3;
+                            btnCalc5.Text = "";
+                            btnCalc5.Enabled = false;
+                            btnCalc5.ImageIndex = 3;
                             break;
                         default:
                             throw new Exception("Button Number > 5, Maximum Button Number is 5");
@@ -476,25 +514,35 @@ namespace CalcGameSolutionFinder
 
             // here we will parse the Button Tag and Button Text to knew what kind of
             // process that we will perform on the game?
-            switch (ButtonTag)
+            switch (ButtonTag.Substring(0,1))
             {
                 case "+":
-                    int.TryParse(ButtonText.Substring(1,1), out Number);
+                    int.TryParse(ButtonTag.Substring(1,ButtonTag.Length - 1), out Number);
                     this.btnAdd.Number = Number;
                     this.CurrentNumber = this.btnAdd.ProcessButton(this.CurrentNumber);
                     break;
                 case "-":
-                    int.TryParse(ButtonText.Substring(1, 1), out Number);
+                    int.TryParse(ButtonTag.Substring(1, ButtonTag.Length - 1), out Number);
                     this.btnMinus.Number = Number;
                     this.CurrentNumber = this.btnMinus.ProcessButton(this.CurrentNumber);
                     break;
                 case "*":
-                    int.TryParse(ButtonText.Substring(1, 1), out Number);
+                case "#":
+                    int.TryParse(ButtonTag.Substring(1, ButtonTag.Length - 1), out Number);
+                    if (ButtonTag.Substring(0, 1) == "#")
+                    {
+                        Number *= -1;
+                    }
                     this.btnMultiply.Number = Number;
                     this.CurrentNumber = this.btnMultiply.ProcessButton(this.CurrentNumber);
                     break;
                 case "/":
-                    int.TryParse(ButtonText.Substring(1, 1), out Number);
+                case "\\":
+                    int.TryParse(ButtonTag.Substring(1, ButtonTag.Length - 1), out Number);
+                    if (ButtonTag.Substring(0, 1) == "\\")
+                    {
+                        Number *= -1;
+                    }
                     this.btnDivide.Number = Number;
                     this.CurrentNumber = this.btnDivide.ProcessButton(this.CurrentNumber);
                     break;
@@ -504,8 +552,11 @@ namespace CalcGameSolutionFinder
                 case "<":
                     this.CurrentNumber = this.btnShift.ProcessButton(this.CurrentNumber);
                     break;
+                case "R":
+                    this.CurrentNumber = this.btnReverse.ProcessButton(this.CurrentNumber);
+                    break;
                 case "N":
-                    int.TryParse(ButtonText, out Number);
+                    int.TryParse(ButtonTag.Substring(1, ButtonTag.Length - 1), out Number);
                     this.btnNumber.Number = Number;
                     this.CurrentNumber = this.btnNumber.ProcessButton(this.CurrentNumber);
                     break;
@@ -549,29 +600,29 @@ namespace CalcGameSolutionFinder
             this.GameStart();
         }
 
-        private void btnNum1_Click(object sender, EventArgs e)
+        private void btnCalc1_Click(object sender, EventArgs e)
         {
-            this.ProcessButton(btnNum1.Tag.ToString(), btnNum1.Text);
+            this.ProcessButton(btnCalc1.Tag.ToString(), btnCalc1.Text);
         }
 
-        private void btnNum2_Click(object sender, EventArgs e)
+        private void btnCalc2_Click(object sender, EventArgs e)
         {
-            this.ProcessButton(btnNum2.Tag.ToString(), btnNum2.Text);
+            this.ProcessButton(btnCalc2.Tag.ToString(), btnCalc2.Text);
         }
 
-        private void btnNum3_Click(object sender, EventArgs e)
+        private void btnCalc3_Click(object sender, EventArgs e)
         {
-            this.ProcessButton(btnNum3.Tag.ToString(), btnNum3.Text);
+            this.ProcessButton(btnCalc3.Tag.ToString(), btnCalc3.Text);
         }
 
-        private void btnOp1_Click(object sender, EventArgs e)
+        private void btnCalc4_Click(object sender, EventArgs e)
         {
-            this.ProcessButton(btnOp1.Tag.ToString(), btnOp1.Text);
+            this.ProcessButton(btnCalc4.Tag.ToString(), btnCalc4.Text);
         }
 
-        private void btnOp2_Click(object sender, EventArgs e)
+        private void btnCalc5_Click(object sender, EventArgs e)
         {
-            this.ProcessButton(btnOp2.Tag.ToString(), btnOp2.Text);
+            this.ProcessButton(btnCalc5.Tag.ToString(), btnCalc5.Text);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -614,25 +665,25 @@ namespace CalcGameSolutionFinder
                 if (this.GameData[this.CurrentGameData].HintData.Length > HintPosition)
                 {
                     // process the hints data, check which button is equal with the Hint
-                    if (btnNum1.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                    if (btnCalc1.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
                     {
-                        this.btnNum1_Click(sender, e);
+                        this.btnCalc1_Click(sender, e);
                     }
-                    else if (btnNum2.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                    else if (btnCalc2.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
                     {
-                        this.btnNum2_Click(sender, e);
+                        this.btnCalc2_Click(sender, e);
                     }
-                    else if (btnNum3.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                    else if (btnCalc3.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
                     {
-                        this.btnNum3_Click(sender, e);
+                        this.btnCalc3_Click(sender, e);
                     }
-                    else if (btnOp1.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                    else if (btnCalc4.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
                     {
-                        this.btnOp1_Click(sender, e);
+                        this.btnCalc4_Click(sender, e);
                     }
-                    else if (btnOp2.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                    else if (btnCalc5.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
                     {
-                        this.btnOp2_Click(sender, e);
+                        this.btnCalc5_Click(sender, e);
                     }
 
                     // substract hint number, since we already used the hint

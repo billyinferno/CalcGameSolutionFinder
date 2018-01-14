@@ -32,12 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.btnImageLst = new System.Windows.Forms.ImageList(this.components);
             this.btnHint = new System.Windows.Forms.Button();
-            this.btnNum1 = new System.Windows.Forms.Button();
+            this.btnCalc1 = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.btnOp1 = new System.Windows.Forms.Button();
-            this.btnNum2 = new System.Windows.Forms.Button();
-            this.btnOp2 = new System.Windows.Forms.Button();
-            this.btnNum3 = new System.Windows.Forms.Button();
+            this.btnCalc4 = new System.Windows.Forms.Button();
+            this.btnCalc2 = new System.Windows.Forms.Button();
+            this.btnCalc5 = new System.Windows.Forms.Button();
+            this.btnCalc3 = new System.Windows.Forms.Button();
             this.btnGoTo = new System.Windows.Forms.Button();
             this.btnSolution = new System.Windows.Forms.Button();
             this.lblMoveCount = new System.Windows.Forms.Label();
@@ -59,6 +59,7 @@
             this.btnImageLst.Images.SetKeyName(3, "btnGrey");
             this.btnImageLst.Images.SetKeyName(4, "btnDarkGray");
             this.btnImageLst.Images.SetKeyName(5, "btnGreen");
+            this.btnImageLst.Images.SetKeyName(6, "btnPurple");
             // 
             // btnHint
             // 
@@ -77,21 +78,21 @@
             this.btnHint.UseVisualStyleBackColor = true;
             this.btnHint.Click += new System.EventHandler(this.btnHint_Click);
             // 
-            // btnNum1
+            // btnCalc1
             // 
-            this.btnNum1.AutoSize = true;
-            this.btnNum1.FlatAppearance.BorderSize = 0;
-            this.btnNum1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNum1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNum1.ForeColor = System.Drawing.Color.White;
-            this.btnNum1.ImageIndex = 4;
-            this.btnNum1.ImageList = this.btnImageLst;
-            this.btnNum1.Location = new System.Drawing.Point(85, 158);
-            this.btnNum1.Name = "btnNum1";
-            this.btnNum1.Size = new System.Drawing.Size(61, 56);
-            this.btnNum1.TabIndex = 1;
-            this.btnNum1.UseVisualStyleBackColor = true;
-            this.btnNum1.Click += new System.EventHandler(this.btnNum1_Click);
+            this.btnCalc1.AutoSize = true;
+            this.btnCalc1.FlatAppearance.BorderSize = 0;
+            this.btnCalc1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCalc1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalc1.ForeColor = System.Drawing.Color.White;
+            this.btnCalc1.ImageIndex = 4;
+            this.btnCalc1.ImageList = this.btnImageLst;
+            this.btnCalc1.Location = new System.Drawing.Point(85, 158);
+            this.btnCalc1.Name = "btnCalc1";
+            this.btnCalc1.Size = new System.Drawing.Size(61, 56);
+            this.btnCalc1.TabIndex = 1;
+            this.btnCalc1.UseVisualStyleBackColor = true;
+            this.btnCalc1.Click += new System.EventHandler(this.btnCalc1_Click);
             // 
             // btnClear
             // 
@@ -110,69 +111,69 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // btnOp1
+            // btnCalc4
             // 
-            this.btnOp1.AutoSize = true;
-            this.btnOp1.FlatAppearance.BorderSize = 0;
-            this.btnOp1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOp1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOp1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnOp1.ImageIndex = 0;
-            this.btnOp1.ImageList = this.btnImageLst;
-            this.btnOp1.Location = new System.Drawing.Point(152, 220);
-            this.btnOp1.Name = "btnOp1";
-            this.btnOp1.Size = new System.Drawing.Size(61, 56);
-            this.btnOp1.TabIndex = 5;
-            this.btnOp1.UseVisualStyleBackColor = true;
-            this.btnOp1.Click += new System.EventHandler(this.btnOp1_Click);
+            this.btnCalc4.AutoSize = true;
+            this.btnCalc4.FlatAppearance.BorderSize = 0;
+            this.btnCalc4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCalc4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalc4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnCalc4.ImageIndex = 0;
+            this.btnCalc4.ImageList = this.btnImageLst;
+            this.btnCalc4.Location = new System.Drawing.Point(152, 220);
+            this.btnCalc4.Name = "btnCalc4";
+            this.btnCalc4.Size = new System.Drawing.Size(61, 56);
+            this.btnCalc4.TabIndex = 5;
+            this.btnCalc4.UseVisualStyleBackColor = true;
+            this.btnCalc4.Click += new System.EventHandler(this.btnCalc4_Click);
             // 
-            // btnNum2
+            // btnCalc2
             // 
-            this.btnNum2.AutoSize = true;
-            this.btnNum2.FlatAppearance.BorderSize = 0;
-            this.btnNum2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNum2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNum2.ForeColor = System.Drawing.Color.White;
-            this.btnNum2.ImageIndex = 4;
-            this.btnNum2.ImageList = this.btnImageLst;
-            this.btnNum2.Location = new System.Drawing.Point(85, 220);
-            this.btnNum2.Name = "btnNum2";
-            this.btnNum2.Size = new System.Drawing.Size(61, 56);
-            this.btnNum2.TabIndex = 4;
-            this.btnNum2.UseVisualStyleBackColor = true;
-            this.btnNum2.Click += new System.EventHandler(this.btnNum2_Click);
+            this.btnCalc2.AutoSize = true;
+            this.btnCalc2.FlatAppearance.BorderSize = 0;
+            this.btnCalc2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCalc2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalc2.ForeColor = System.Drawing.Color.White;
+            this.btnCalc2.ImageIndex = 4;
+            this.btnCalc2.ImageList = this.btnImageLst;
+            this.btnCalc2.Location = new System.Drawing.Point(85, 220);
+            this.btnCalc2.Name = "btnCalc2";
+            this.btnCalc2.Size = new System.Drawing.Size(61, 56);
+            this.btnCalc2.TabIndex = 4;
+            this.btnCalc2.UseVisualStyleBackColor = true;
+            this.btnCalc2.Click += new System.EventHandler(this.btnCalc2_Click);
             // 
-            // btnOp2
+            // btnCalc5
             // 
-            this.btnOp2.AutoSize = true;
-            this.btnOp2.FlatAppearance.BorderSize = 0;
-            this.btnOp2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOp2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOp2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnOp2.ImageIndex = 0;
-            this.btnOp2.ImageList = this.btnImageLst;
-            this.btnOp2.Location = new System.Drawing.Point(152, 282);
-            this.btnOp2.Name = "btnOp2";
-            this.btnOp2.Size = new System.Drawing.Size(61, 56);
-            this.btnOp2.TabIndex = 8;
-            this.btnOp2.UseVisualStyleBackColor = true;
-            this.btnOp2.Click += new System.EventHandler(this.btnOp2_Click);
+            this.btnCalc5.AutoSize = true;
+            this.btnCalc5.FlatAppearance.BorderSize = 0;
+            this.btnCalc5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCalc5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalc5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnCalc5.ImageIndex = 0;
+            this.btnCalc5.ImageList = this.btnImageLst;
+            this.btnCalc5.Location = new System.Drawing.Point(152, 282);
+            this.btnCalc5.Name = "btnCalc5";
+            this.btnCalc5.Size = new System.Drawing.Size(61, 56);
+            this.btnCalc5.TabIndex = 8;
+            this.btnCalc5.UseVisualStyleBackColor = true;
+            this.btnCalc5.Click += new System.EventHandler(this.btnCalc5_Click);
             // 
-            // btnNum3
+            // btnCalc3
             // 
-            this.btnNum3.AutoSize = true;
-            this.btnNum3.FlatAppearance.BorderSize = 0;
-            this.btnNum3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNum3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNum3.ForeColor = System.Drawing.Color.White;
-            this.btnNum3.ImageIndex = 4;
-            this.btnNum3.ImageList = this.btnImageLst;
-            this.btnNum3.Location = new System.Drawing.Point(85, 282);
-            this.btnNum3.Name = "btnNum3";
-            this.btnNum3.Size = new System.Drawing.Size(61, 56);
-            this.btnNum3.TabIndex = 7;
-            this.btnNum3.UseVisualStyleBackColor = true;
-            this.btnNum3.Click += new System.EventHandler(this.btnNum3_Click);
+            this.btnCalc3.AutoSize = true;
+            this.btnCalc3.FlatAppearance.BorderSize = 0;
+            this.btnCalc3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCalc3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalc3.ForeColor = System.Drawing.Color.White;
+            this.btnCalc3.ImageIndex = 4;
+            this.btnCalc3.ImageList = this.btnImageLst;
+            this.btnCalc3.Location = new System.Drawing.Point(85, 282);
+            this.btnCalc3.Name = "btnCalc3";
+            this.btnCalc3.Size = new System.Drawing.Size(61, 56);
+            this.btnCalc3.TabIndex = 7;
+            this.btnCalc3.UseVisualStyleBackColor = true;
+            this.btnCalc3.Click += new System.EventHandler(this.btnCalc3_Click);
             // 
             // btnGoTo
             // 
@@ -310,14 +311,14 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.lblTarget);
             this.Controls.Add(this.lblMoveCount);
-            this.Controls.Add(this.btnOp2);
-            this.Controls.Add(this.btnNum3);
+            this.Controls.Add(this.btnCalc5);
+            this.Controls.Add(this.btnCalc3);
             this.Controls.Add(this.btnGoTo);
-            this.Controls.Add(this.btnOp1);
-            this.Controls.Add(this.btnNum2);
+            this.Controls.Add(this.btnCalc4);
+            this.Controls.Add(this.btnCalc2);
             this.Controls.Add(this.btnSolution);
             this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.btnNum1);
+            this.Controls.Add(this.btnCalc1);
             this.Controls.Add(this.btnHint);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -335,12 +336,12 @@
 
         private System.Windows.Forms.ImageList btnImageLst;
         private System.Windows.Forms.Button btnHint;
-        private System.Windows.Forms.Button btnNum1;
+        private System.Windows.Forms.Button btnCalc1;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnOp1;
-        private System.Windows.Forms.Button btnNum2;
-        private System.Windows.Forms.Button btnOp2;
-        private System.Windows.Forms.Button btnNum3;
+        private System.Windows.Forms.Button btnCalc4;
+        private System.Windows.Forms.Button btnCalc2;
+        private System.Windows.Forms.Button btnCalc5;
+        private System.Windows.Forms.Button btnCalc3;
         private System.Windows.Forms.Button btnGoTo;
         private System.Windows.Forms.Button btnSolution;
         private System.Windows.Forms.Label lblMoveCount;
