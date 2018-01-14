@@ -34,8 +34,6 @@
             this.cmbOperator = new System.Windows.Forms.ComboBox();
             this.txtNumber = new System.Windows.Forms.TextBox();
             this.btnAddNumber = new System.Windows.Forms.Button();
-            this.chkPlusMinus = new System.Windows.Forms.CheckBox();
-            this.chkShift = new System.Windows.Forms.CheckBox();
             this.lstNumber = new System.Windows.Forms.ListBox();
             this.btnGo = new System.Windows.Forms.Button();
             this.lstSolution = new System.Windows.Forms.ListBox();
@@ -48,6 +46,9 @@
             this.txtMaximumMoves = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnGenerateGameFile = new System.Windows.Forms.Button();
+            this.pBar = new System.Windows.Forms.ProgressBar();
+            this.chkPlusMinus = new System.Windows.Forms.CheckBox();
+            this.chkShift = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnImageLst
@@ -59,6 +60,7 @@
             this.btnImageLst.Images.SetKeyName(2, "btnBlue");
             this.btnImageLst.Images.SetKeyName(3, "btnGrey");
             this.btnImageLst.Images.SetKeyName(4, "btnDarkGray");
+            this.btnImageLst.Images.SetKeyName(5, "btnGreen");
             // 
             // cmbOperator
             // 
@@ -69,7 +71,9 @@
             "+",
             "-",
             "*",
+            "#",
             "/",
+            "\\",
             "N"});
             this.cmbOperator.Location = new System.Drawing.Point(12, 28);
             this.cmbOperator.Name = "cmbOperator";
@@ -102,36 +106,6 @@
             this.btnAddNumber.UseVisualStyleBackColor = false;
             this.btnAddNumber.Click += new System.EventHandler(this.btnAddNumber_Click);
             // 
-            // chkPlusMinus
-            // 
-            this.chkPlusMinus.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.chkPlusMinus.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPlusMinus.ForeColor = System.Drawing.Color.White;
-            this.chkPlusMinus.ImageKey = "btnOrange";
-            this.chkPlusMinus.ImageList = this.btnImageLst;
-            this.chkPlusMinus.Location = new System.Drawing.Point(12, 77);
-            this.chkPlusMinus.Name = "chkPlusMinus";
-            this.chkPlusMinus.Size = new System.Drawing.Size(70, 62);
-            this.chkPlusMinus.TabIndex = 5;
-            this.chkPlusMinus.Text = "+/-";
-            this.chkPlusMinus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chkPlusMinus.UseVisualStyleBackColor = true;
-            // 
-            // chkShift
-            // 
-            this.chkShift.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.chkShift.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkShift.ForeColor = System.Drawing.Color.White;
-            this.chkShift.ImageKey = "btnOrange";
-            this.chkShift.ImageList = this.btnImageLst;
-            this.chkShift.Location = new System.Drawing.Point(88, 77);
-            this.chkShift.Name = "chkShift";
-            this.chkShift.Size = new System.Drawing.Size(70, 62);
-            this.chkShift.TabIndex = 6;
-            this.chkShift.Text = "<<";
-            this.chkShift.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chkShift.UseVisualStyleBackColor = true;
-            // 
             // lstNumber
             // 
             this.lstNumber.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -149,7 +123,7 @@
             this.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGo.ForeColor = System.Drawing.Color.White;
-            this.btnGo.ImageKey = "btnBlue";
+            this.btnGo.ImageKey = "btnGreen";
             this.btnGo.ImageList = this.btnImageLst;
             this.btnGo.Location = new System.Drawing.Point(326, 138);
             this.btnGo.Name = "btnGo";
@@ -157,6 +131,7 @@
             this.btnGo.TabIndex = 12;
             this.btnGo.Text = "GO";
             this.btnGo.UseVisualStyleBackColor = false;
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
             // lstSolution
             // 
@@ -165,7 +140,7 @@
             this.lstSolution.ItemHeight = 14;
             this.lstSolution.Location = new System.Drawing.Point(12, 201);
             this.lstSolution.Name = "lstSolution";
-            this.lstSolution.Size = new System.Drawing.Size(373, 172);
+            this.lstSolution.Size = new System.Drawing.Size(373, 144);
             this.lstSolution.TabIndex = 13;
             // 
             // label1
@@ -265,12 +240,50 @@
             this.btnGenerateGameFile.Text = "GEN";
             this.btnGenerateGameFile.UseVisualStyleBackColor = false;
             // 
+            // pBar
+            // 
+            this.pBar.Location = new System.Drawing.Point(12, 351);
+            this.pBar.Name = "pBar";
+            this.pBar.Size = new System.Drawing.Size(373, 23);
+            this.pBar.TabIndex = 23;
+            // 
+            // chkPlusMinus
+            // 
+            this.chkPlusMinus.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.chkPlusMinus.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPlusMinus.ForeColor = System.Drawing.Color.White;
+            this.chkPlusMinus.ImageKey = "btnOrange";
+            this.chkPlusMinus.ImageList = this.btnImageLst;
+            this.chkPlusMinus.Location = new System.Drawing.Point(12, 77);
+            this.chkPlusMinus.Name = "chkPlusMinus";
+            this.chkPlusMinus.Size = new System.Drawing.Size(70, 62);
+            this.chkPlusMinus.TabIndex = 5;
+            this.chkPlusMinus.Text = "+/-";
+            this.chkPlusMinus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkPlusMinus.UseVisualStyleBackColor = true;
+            // 
+            // chkShift
+            // 
+            this.chkShift.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.chkShift.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkShift.ForeColor = System.Drawing.Color.White;
+            this.chkShift.ImageKey = "btnOrange";
+            this.chkShift.ImageList = this.btnImageLst;
+            this.chkShift.Location = new System.Drawing.Point(88, 77);
+            this.chkShift.Name = "chkShift";
+            this.chkShift.Size = new System.Drawing.Size(70, 62);
+            this.chkShift.TabIndex = 6;
+            this.chkShift.Text = "<<";
+            this.chkShift.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkShift.UseVisualStyleBackColor = true;
+            // 
             // frmSolutionFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(397, 385);
+            this.Controls.Add(this.pBar);
             this.Controls.Add(this.btnGenerateGameFile);
             this.Controls.Add(this.txtMaximumMoves);
             this.Controls.Add(this.label4);
@@ -292,6 +305,7 @@
             this.Name = "frmSolutionFinder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Solution Finder";
+            this.Load += new System.EventHandler(this.frmSolutionFinder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,8 +316,6 @@
         private System.Windows.Forms.ComboBox cmbOperator;
         private System.Windows.Forms.TextBox txtNumber;
         private System.Windows.Forms.Button btnAddNumber;
-        private System.Windows.Forms.CheckBox chkPlusMinus;
-        private System.Windows.Forms.CheckBox chkShift;
         private System.Windows.Forms.ListBox lstNumber;
         private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.ListBox lstSolution;
@@ -316,5 +328,8 @@
         private System.Windows.Forms.TextBox txtMaximumMoves;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnGenerateGameFile;
+        private System.Windows.Forms.ProgressBar pBar;
+        private System.Windows.Forms.CheckBox chkPlusMinus;
+        private System.Windows.Forms.CheckBox chkShift;
     }
 }

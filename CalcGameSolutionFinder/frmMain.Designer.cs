@@ -58,6 +58,7 @@
             this.btnImageLst.Images.SetKeyName(2, "btnBlue");
             this.btnImageLst.Images.SetKeyName(3, "btnGrey");
             this.btnImageLst.Images.SetKeyName(4, "btnDarkGray");
+            this.btnImageLst.Images.SetKeyName(5, "btnGreen");
             // 
             // btnHint
             // 
@@ -257,7 +258,7 @@
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.ForeColor = System.Drawing.Color.White;
-            this.btnOK.ImageIndex = 1;
+            this.btnOK.ImageIndex = 5;
             this.btnOK.ImageList = this.btnImageLst;
             this.btnOK.Location = new System.Drawing.Point(152, 158);
             this.btnOK.Name = "btnOK";
