@@ -47,6 +47,7 @@ namespace CalcGameSolutionFinder
             int MaxNumber = 5;
             if (chkPlusMinus.Checked) MaxNumber -= 1;
             if (chkShift.Checked) MaxNumber -= 1;
+            if (chkReverse.Checked) MaxNumber -= 1;
 
             // ensure that the number textbox is already filled
             if ((this.cmbOperator.Text.Trim().Length > 0) && (this.txtNumber.Text.Trim().Length > 0))
@@ -197,6 +198,15 @@ namespace CalcGameSolutionFinder
                         }
                     }
 
+                    if (i < 5)
+                    {
+                        if (chkReverse.Checked)
+                        {
+                            ButtonDataArr[i] = "RV";
+                            i += 1;
+                        }
+                    }
+
                     // now join everything in the ButtonData string
                     ButtonData = string.Join(",", ButtonDataArr);
                 }
@@ -222,16 +232,19 @@ namespace CalcGameSolutionFinder
             if (SolutionFinder.FindSolution())
             {
                 // show the solution
-                foreach (string SolutionData in SolutionFinder.Solution)
-                {
-                    this.lstSolution.Items.Add(SolutionData);
-                }
+                //foreach (string SolutionData in SolutionFinder.Solution)
+                //{
+                //    this.lstSolution.Items.Add(SolutionData);
+                //}
                 MessageBox.Show("Solution Found!", "Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 MessageBox.Show("Solution not Found!", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            // set solution start into false, so we can found another solution
+            this.SolutionStart = false;
         }
 
         private void frmSolutionFinder_Load(object sender, EventArgs e)

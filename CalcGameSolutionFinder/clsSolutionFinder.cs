@@ -22,6 +22,7 @@ namespace CalcGameSolutionFinder
         private clsMultiplyButton btnMultiply = new clsMultiplyButton(0);
         private clsPlusMinusButton btnPlusMinus = new clsPlusMinusButton();
         private clsShiftButton btnShift = new clsShiftButton();
+        private clsReverseButton btnReverse = new clsReverseButton();
 
         public clsSolutionFinder(string ButtonData, int CurrentNumber, int TargetNumber, int MaximumMoves)
         {
@@ -121,7 +122,7 @@ namespace CalcGameSolutionFinder
                                 case "#":
                                 case "N":
                                     // get the number and parse it into integer
-                                    sButtonNumber = this.ButtonData[i].Substring(1, 1);
+                                    sButtonNumber = this.ButtonData[i].Substring(1, this.ButtonData[i].Length - 1);
                                     int.TryParse(sButtonNumber, out ButtonNumber);
                                     break;
                             }
@@ -179,6 +180,9 @@ namespace CalcGameSolutionFinder
                                     break;
                                 case "P":
                                     tmpCurrentNumber = this.btnPlusMinus.ProcessButton(CurrentNumber);
+                                    break;
+                                case "R":
+                                    tmpCurrentNumber = this.btnReverse.ProcessButton(CurrentNumber);
                                     break;
                             }
 

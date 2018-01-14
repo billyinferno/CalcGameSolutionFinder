@@ -53,6 +53,7 @@
     <Compile Include="clsMultiplyButton.cs" />
     <Compile Include="clsNumberButton.cs" />
     <Compile Include="clsPlusMinusButton.cs" />
+    <Compile Include="clsReverseButton.cs" />
     <Compile Include="clsShiftButton.cs" />
     <Compile Include="clsSolutionFinder.cs" />
     <Compile Include="frmMain.cs">

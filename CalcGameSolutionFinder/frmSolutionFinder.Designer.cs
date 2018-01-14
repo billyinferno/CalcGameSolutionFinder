@@ -49,6 +49,7 @@
             this.pBar = new System.Windows.Forms.ProgressBar();
             this.chkPlusMinus = new System.Windows.Forms.CheckBox();
             this.chkShift = new System.Windows.Forms.CheckBox();
+            this.chkReverse = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnImageLst
@@ -84,7 +85,7 @@
             // 
             this.txtNumber.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumber.Location = new System.Drawing.Point(58, 28);
-            this.txtNumber.MaxLength = 1;
+            this.txtNumber.MaxLength = 2;
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(40, 27);
             this.txtNumber.TabIndex = 8;
@@ -138,7 +139,7 @@
             this.lstSolution.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstSolution.FormattingEnabled = true;
             this.lstSolution.ItemHeight = 14;
-            this.lstSolution.Location = new System.Drawing.Point(12, 201);
+            this.lstSolution.Location = new System.Drawing.Point(12, 222);
             this.lstSolution.Name = "lstSolution";
             this.lstSolution.Size = new System.Drawing.Size(373, 144);
             this.lstSolution.TabIndex = 13;
@@ -147,7 +148,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 179);
+            this.label1.Location = new System.Drawing.Point(12, 200);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(141, 19);
             this.label1.TabIndex = 14;
@@ -242,7 +243,7 @@
             // 
             // pBar
             // 
-            this.pBar.Location = new System.Drawing.Point(12, 351);
+            this.pBar.Location = new System.Drawing.Point(12, 372);
             this.pBar.Name = "pBar";
             this.pBar.Size = new System.Drawing.Size(373, 23);
             this.pBar.TabIndex = 23;
@@ -254,7 +255,7 @@
             this.chkPlusMinus.ForeColor = System.Drawing.Color.White;
             this.chkPlusMinus.ImageKey = "btnOrange";
             this.chkPlusMinus.ImageList = this.btnImageLst;
-            this.chkPlusMinus.Location = new System.Drawing.Point(12, 77);
+            this.chkPlusMinus.Location = new System.Drawing.Point(12, 70);
             this.chkPlusMinus.Name = "chkPlusMinus";
             this.chkPlusMinus.Size = new System.Drawing.Size(70, 62);
             this.chkPlusMinus.TabIndex = 5;
@@ -269,7 +270,7 @@
             this.chkShift.ForeColor = System.Drawing.Color.White;
             this.chkShift.ImageKey = "btnOrange";
             this.chkShift.ImageList = this.btnImageLst;
-            this.chkShift.Location = new System.Drawing.Point(88, 77);
+            this.chkShift.Location = new System.Drawing.Point(88, 70);
             this.chkShift.Name = "chkShift";
             this.chkShift.Size = new System.Drawing.Size(70, 62);
             this.chkShift.TabIndex = 6;
@@ -277,12 +278,28 @@
             this.chkShift.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkShift.UseVisualStyleBackColor = true;
             // 
+            // chkReverse
+            // 
+            this.chkReverse.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.chkReverse.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkReverse.ForeColor = System.Drawing.Color.White;
+            this.chkReverse.ImageKey = "btnOrange";
+            this.chkReverse.ImageList = this.btnImageLst;
+            this.chkReverse.Location = new System.Drawing.Point(12, 126);
+            this.chkReverse.Name = "chkReverse";
+            this.chkReverse.Size = new System.Drawing.Size(70, 62);
+            this.chkReverse.TabIndex = 24;
+            this.chkReverse.Text = "REV";
+            this.chkReverse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkReverse.UseVisualStyleBackColor = true;
+            // 
             // frmSolutionFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
-            this.ClientSize = new System.Drawing.Size(397, 385);
+            this.ClientSize = new System.Drawing.Size(397, 407);
+            this.Controls.Add(this.chkReverse);
             this.Controls.Add(this.pBar);
             this.Controls.Add(this.btnGenerateGameFile);
             this.Controls.Add(this.txtMaximumMoves);
@@ -331,5 +348,6 @@
         private System.Windows.Forms.ProgressBar pBar;
         private System.Windows.Forms.CheckBox chkPlusMinus;
         private System.Windows.Forms.CheckBox chkShift;
+        private System.Windows.Forms.CheckBox chkReverse;
     }
 }
