@@ -26,14 +26,7 @@ namespace CalcGameSolutionFinder
         private int TargetNumber;
         private int MaximumMoves;
 
-        private clsNumberButton btnNumber = new clsNumberButton(0);
-        private clsAddButton btnAdd = new clsAddButton(0);
-        private clsMinusButton btnMinus = new clsMinusButton(0);
-        private clsDivideButton btnDivide = new clsDivideButton(0);
-        private clsMultiplyButton btnMultiply = new clsMultiplyButton(0);
-        private clsPlusMinusButton btnPlusMinus = new clsPlusMinusButton();
-        private clsShiftButton btnShift = new clsShiftButton();
-        private clsReverseButton btnReverse = new clsReverseButton();
+        private clsButtonSwitcher ButtonSwitcher = new clsButtonSwitcher();
 
         private Label[] lblSegment = new Label[5];
 
@@ -410,6 +403,13 @@ namespace CalcGameSolutionFinder
                             // for number we only need to add the number no need to add the "N"
                             btnLabel = btnArr[i].Substring(1, btnArr[i].Length - 1);
                             break;
+                        case "S":
+                            // replace the "|" with ">"
+                            btnLabel = btnArr[i].Substring(1, btnArr[i].Length - 1).Replace("|", ">");
+                            break;
+                        case "^":
+                            btnLabel = "X" + btnArr[i];
+                            break;
                         default:
                             throw new Exception("Unknown Button");
                     }
@@ -420,7 +420,9 @@ namespace CalcGameSolutionFinder
                         case "-":
                         case "*":
                         case "#":
+                        case "/":
                         case "\\":
+                        case "^":
                             btnImageIndex = 4;
                             break;
                         case "N":
@@ -429,6 +431,7 @@ namespace CalcGameSolutionFinder
                         case "P":
                         case "<":
                         case "R":
+                        case "S":
                             btnImageIndex = 0;
                             break;
                     }
@@ -508,61 +511,10 @@ namespace CalcGameSolutionFinder
         /// </summary>
         /// <param name="ButtonTag">Operator that will be performed</param>
         /// <param name="ButtonText">Number that will be processed</param>
-        private void ProcessButton(string ButtonTag, string ButtonText)
+        private void ProcessButton(string ButtonTag)
         {
-            int Number = 0;
-
-            // here we will parse the Button Tag and Button Text to knew what kind of
-            // process that we will perform on the game?
-            switch (ButtonTag.Substring(0,1))
-            {
-                case "+":
-                    int.TryParse(ButtonTag.Substring(1,ButtonTag.Length - 1), out Number);
-                    this.btnAdd.Number = Number;
-                    this.CurrentNumber = this.btnAdd.ProcessButton(this.CurrentNumber);
-                    break;
-                case "-":
-                    int.TryParse(ButtonTag.Substring(1, ButtonTag.Length - 1), out Number);
-                    this.btnMinus.Number = Number;
-                    this.CurrentNumber = this.btnMinus.ProcessButton(this.CurrentNumber);
-                    break;
-                case "*":
-                case "#":
-                    int.TryParse(ButtonTag.Substring(1, ButtonTag.Length - 1), out Number);
-                    if (ButtonTag.Substring(0, 1) == "#")
-                    {
-                        Number *= -1;
-                    }
-                    this.btnMultiply.Number = Number;
-                    this.CurrentNumber = this.btnMultiply.ProcessButton(this.CurrentNumber);
-                    break;
-                case "/":
-                case "\\":
-                    int.TryParse(ButtonTag.Substring(1, ButtonTag.Length - 1), out Number);
-                    if (ButtonTag.Substring(0, 1) == "\\")
-                    {
-                        Number *= -1;
-                    }
-                    this.btnDivide.Number = Number;
-                    this.CurrentNumber = this.btnDivide.ProcessButton(this.CurrentNumber);
-                    break;
-                case "P":
-                    this.CurrentNumber = this.btnPlusMinus.ProcessButton(this.CurrentNumber);
-                    break;
-                case "<":
-                    this.CurrentNumber = this.btnShift.ProcessButton(this.CurrentNumber);
-                    break;
-                case "R":
-                    this.CurrentNumber = this.btnReverse.ProcessButton(this.CurrentNumber);
-                    break;
-                case "N":
-                    int.TryParse(ButtonTag.Substring(1, ButtonTag.Length - 1), out Number);
-                    this.btnNumber.Number = Number;
-                    this.CurrentNumber = this.btnNumber.ProcessButton(this.CurrentNumber);
-                    break;
-                default:
-                    throw new Exception("Unknown Button Tag");
-            }
+            // process the button using Button Switcher class
+            this.CurrentNumber = this.ButtonSwitcher.LoadButton(ButtonTag, this.CurrentNumber);
 
             // Substract the moves number
             this.MaximumMoves -= 1;
@@ -575,54 +527,32 @@ namespace CalcGameSolutionFinder
         #region FormFunction
         private void frmMain_Load(object sender, EventArgs e)
         {
-            int test_num = 10;
-
-            clsAddButton add = new clsAddButton(10);
-            clsPlusMinusButton plusMinus = new clsPlusMinusButton();
-            clsNumberButton num5 = new clsNumberButton(5);
-
-            Console.WriteLine("Current Number is : " + test_num.ToString());
-            
-            // test for the class
-            test_num = add.ProcessButton(test_num);
-            Console.WriteLine("After Add 10      : " + test_num.ToString());
-            test_num = plusMinus.ProcessButton(test_num);
-            Console.WriteLine("After Plus Minus  : " + test_num.ToString());
-            test_num = num5.ProcessButton(test_num);
-            Console.WriteLine("After Insert 5    : " + test_num.ToString());
-
-            Console.WriteLine("Final Number is   : " + test_num.ToString());
-
-            string test = "12345";
-            test = test.Substring(0, (test.Length - 1));
-            Console.WriteLine("Test Line : " + test);
-
             this.GameStart();
         }
 
         private void btnCalc1_Click(object sender, EventArgs e)
         {
-            this.ProcessButton(btnCalc1.Tag.ToString(), btnCalc1.Text);
+            this.ProcessButton(btnCalc1.Tag.ToString());
         }
 
         private void btnCalc2_Click(object sender, EventArgs e)
         {
-            this.ProcessButton(btnCalc2.Tag.ToString(), btnCalc2.Text);
+            this.ProcessButton(btnCalc2.Tag.ToString());
         }
 
         private void btnCalc3_Click(object sender, EventArgs e)
         {
-            this.ProcessButton(btnCalc3.Tag.ToString(), btnCalc3.Text);
+            this.ProcessButton(btnCalc3.Tag.ToString());
         }
 
         private void btnCalc4_Click(object sender, EventArgs e)
         {
-            this.ProcessButton(btnCalc4.Tag.ToString(), btnCalc4.Text);
+            this.ProcessButton(btnCalc4.Tag.ToString());
         }
 
         private void btnCalc5_Click(object sender, EventArgs e)
         {
-            this.ProcessButton(btnCalc5.Tag.ToString(), btnCalc5.Text);
+            this.ProcessButton(btnCalc5.Tag.ToString());
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -657,44 +587,59 @@ namespace CalcGameSolutionFinder
         private void btnHint_Click(object sender, EventArgs e)
         {
             // directly click the button based on the hint listed at the game data
-            if (this.HintsNumber > 0)
+            if (this.GameData[this.CurrentGameData].HintData.Length > 0)
             {
-                int HintPosition = this.GameData[this.CurrentGameData].MaximumMoves - this.MaximumMoves;
-
-                // check if Hint Data is more than HintPosition?
-                if (this.GameData[this.CurrentGameData].HintData.Length > HintPosition)
+                if (this.HintsNumber > 0)
                 {
-                    // process the hints data, check which button is equal with the Hint
-                    if (btnCalc1.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
-                    {
-                        this.btnCalc1_Click(sender, e);
-                    }
-                    else if (btnCalc2.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
-                    {
-                        this.btnCalc2_Click(sender, e);
-                    }
-                    else if (btnCalc3.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
-                    {
-                        this.btnCalc3_Click(sender, e);
-                    }
-                    else if (btnCalc4.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
-                    {
-                        this.btnCalc4_Click(sender, e);
-                    }
-                    else if (btnCalc5.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
-                    {
-                        this.btnCalc5_Click(sender, e);
-                    }
+                    int HintPosition = this.GameData[this.CurrentGameData].MaximumMoves - this.MaximumMoves;
 
-                    // substract hint number, since we already used the hint
-                    this.HintsNumber -= 1;
-
-                    // if hint number is already 0, then disabled the hint button
-                    if (this.HintsNumber <= 0)
+                    // check if Hint Data is more than HintPosition?
+                    if (this.GameData[this.CurrentGameData].HintData.Length > HintPosition)
                     {
-                        this.btnHint.Enabled = false;
+                        // check if this empty or not?
+                        if (this.GameData[this.CurrentGameData].HintData[HintPosition] != "")
+                        {
+                            // process the hints data, check which button is equal with the Hint
+                            if (btnCalc1.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                            {
+                                this.btnCalc1_Click(sender, e);
+                            }
+                            else if (btnCalc2.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                            {
+                                this.btnCalc2_Click(sender, e);
+                            }
+                            else if (btnCalc3.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                            {
+                                this.btnCalc3_Click(sender, e);
+                            }
+                            else if (btnCalc4.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                            {
+                                this.btnCalc4_Click(sender, e);
+                            }
+                            else if (btnCalc5.Text == this.GameData[this.CurrentGameData].HintData[HintPosition])
+                            {
+                                this.btnCalc5_Click(sender, e);
+                            }
+
+                            // substract hint number, since we already used the hint
+                            this.HintsNumber -= 1;
+
+                            // if hint number is already 0, then disabled the hint button
+                            if (this.HintsNumber <= 0)
+                            {
+                                this.btnHint.Enabled = false;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No hint is provided for the current problem.", "Hints Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("No hint is provided for the current problem.", "Hints Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

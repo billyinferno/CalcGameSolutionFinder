@@ -15,6 +15,9 @@ namespace CalcGameSolutionFinder
         private Dictionary<string, bool> dctNumber;
         private bool SolutionStart;
 
+        delegate void SetProgressBar(int Value);
+        delegate void AddSolution(string SolutionText);
+
         public frmSolutionFinder()
         {
             InitializeComponent();
@@ -226,16 +229,16 @@ namespace CalcGameSolutionFinder
         private void CheckSolution(string ButtonData, int CurrentNumber, int TargetNumber, int MaximumMoves)
         {
             // all data is ready, now we can try to find the solution
-            clsSolutionFinder SolutionFinder = new clsSolutionFinder(ButtonData, CurrentNumber, TargetNumber, MaximumMoves);
+            clsSolutionFinder SolutionFinder = new clsSolutionFinder(ButtonData, CurrentNumber, TargetNumber, MaximumMoves, this);
 
             // perform the solution finder
             if (SolutionFinder.FindSolution())
             {
                 // show the solution
-                //foreach (string SolutionData in SolutionFinder.Solution)
-                //{
-                //    this.lstSolution.Items.Add(SolutionData);
-                //}
+                foreach (string SolutionData in SolutionFinder.Solution)
+                {
+                    AddSolutionItem(SolutionData);
+                }
                 MessageBox.Show("Solution Found!", "Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -245,6 +248,35 @@ namespace CalcGameSolutionFinder
 
             // set solution start into false, so we can found another solution
             this.SolutionStart = false;
+
+            // clear the solution finder class from memory
+            SolutionFinder = null;
+        }
+
+        public void SetProgressBarValue(int Value)
+        {
+            if (this.pBar.InvokeRequired)
+            {
+                SetProgressBar d = new SetProgressBar(SetProgressBarValue);
+                this.Invoke(d, new object[] { Value });
+            }
+            else
+            {
+                this.pBar.Value = Value;
+            }
+        }
+
+        public void AddSolutionItem(string SolutionText)
+        {
+            if (this.lstSolution.InvokeRequired)
+            {
+                AddSolution d = new AddSolution(AddSolutionItem);
+                this.Invoke(d, new object[] { SolutionText });
+            }
+            else
+            {
+                this.lstSolution.Items.Add(SolutionText);
+            }
         }
 
         private void frmSolutionFinder_Load(object sender, EventArgs e)

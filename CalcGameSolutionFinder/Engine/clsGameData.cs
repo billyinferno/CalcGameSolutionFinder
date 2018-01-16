@@ -56,7 +56,7 @@ namespace CalcGameSolutionFinder
             this.IsLoaded = false;
 
             // split the GameData with "#"
-            string[] GameDataArr = GameData.Split(new string[] { "#" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] GameDataArr = GameData.Split(new string[] { "#" }, StringSplitOptions.None);
 
             // the GameData array length should be 5, otherwise it was a wrong game data
             if (GameDataArr.Length == 5)
@@ -105,7 +105,7 @@ namespace CalcGameSolutionFinder
             }
             else
             {
-                Console.WriteLine("Game Data : " + GameData + " --> Cannot Be Loaded. Array Length <> 4.");
+                Console.WriteLine("Game Data : " + GameData + " --> Cannot Be Loaded. Array Length <> 5.");
             }
         }
     }

@@ -23,10 +23,14 @@ namespace CalcGameSolutionFinder
         {
             // first let's convert the CurrentNumber into string.
             string sCurrentNumber = "";
-            if (CurrentNumber > 0)
+            bool IsMinus = false;
+            if (CurrentNumber < 0)
             {
-               sCurrentNumber = CurrentNumber.ToString();
+                IsMinus = true;
+                CurrentNumber *= -1;
             }
+
+            sCurrentNumber = CurrentNumber.ToString();
 
             // then convert number set on the class into string.
             string sNumber = Number.ToString();
@@ -38,6 +42,10 @@ namespace CalcGameSolutionFinder
             try
             {
                 CombineNumber = int.Parse(sCombineNumber);
+                if (IsMinus)
+                {
+                    CombineNumber *= -1;
+                }
                 return CombineNumber;
             }
             catch(Exception ex)

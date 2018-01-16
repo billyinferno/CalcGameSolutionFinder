@@ -87,7 +87,7 @@
             this.btnCalc1.ForeColor = System.Drawing.Color.White;
             this.btnCalc1.ImageIndex = 4;
             this.btnCalc1.ImageList = this.btnImageLst;
-            this.btnCalc1.Location = new System.Drawing.Point(85, 158);
+            this.btnCalc1.Location = new System.Drawing.Point(86, 159);
             this.btnCalc1.Name = "btnCalc1";
             this.btnCalc1.Size = new System.Drawing.Size(61, 56);
             this.btnCalc1.TabIndex = 1;
@@ -136,7 +136,7 @@
             this.btnCalc2.ForeColor = System.Drawing.Color.White;
             this.btnCalc2.ImageIndex = 4;
             this.btnCalc2.ImageList = this.btnImageLst;
-            this.btnCalc2.Location = new System.Drawing.Point(85, 220);
+            this.btnCalc2.Location = new System.Drawing.Point(86, 221);
             this.btnCalc2.Name = "btnCalc2";
             this.btnCalc2.Size = new System.Drawing.Size(61, 56);
             this.btnCalc2.TabIndex = 4;

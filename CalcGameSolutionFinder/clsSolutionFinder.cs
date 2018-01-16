@@ -12,7 +12,11 @@ namespace CalcGameSolutionFinder
         private int CurrentNumber;
         private int TargetNumber;
         private int MaximumMoves;
+        private frmSolutionFinder Owner;
         public List<string> Solution { get; private set; }
+
+        private int pBarValue;
+        private int pBarAdd;
 
         // Button Action class
         private clsNumberButton btnNumber = new clsNumberButton(0);
@@ -24,7 +28,7 @@ namespace CalcGameSolutionFinder
         private clsShiftButton btnShift = new clsShiftButton();
         private clsReverseButton btnReverse = new clsReverseButton();
 
-        public clsSolutionFinder(string ButtonData, int CurrentNumber, int TargetNumber, int MaximumMoves)
+        public clsSolutionFinder(string ButtonData, int CurrentNumber, int TargetNumber, int MaximumMoves, frmSolutionFinder Owner)
         {
             // first parse the ButtonData and ensure we got 5 data, otherwise we can throw an exception
             this.ButtonData = ButtonData.Split(new string[] { "," }, StringSplitOptions.None);
@@ -37,9 +41,12 @@ namespace CalcGameSolutionFinder
             this.CurrentNumber = CurrentNumber;
             this.TargetNumber = TargetNumber;
             this.MaximumMoves = MaximumMoves;
+            this.Owner = Owner;
 
             // initialize other variable
             this.Solution = new List<string>();
+            this.pBarValue = 0;
+            this.pBarAdd = 1;
         }
 
         public bool FindSolution()
@@ -72,6 +79,20 @@ namespace CalcGameSolutionFinder
 
             // add new moves every time we call this location
             tmpCurrentMove += 1;
+
+            // set the progress bar value, if the pBar value already reached 100, change the pBar add into -1
+            // if the pBar value already reached 0, change the pBar add into 1 again
+            pBarValue += pBarAdd;
+            if (pBarValue >= 100)
+            {
+                pBarAdd = -1;
+            }
+            else if (pBarValue <= 0)
+            {
+                pBarAdd = 1;
+            }
+            // set the progress bar on the owner form with pBar value
+            this.Owner.SetProgressBarValue(pBarValue);
 
             // check if we already run out of moves
             if (tmpCurrentMove > this.MaximumMoves)

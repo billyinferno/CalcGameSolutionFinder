@@ -45,16 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsAddButton.cs" />
-    <Compile Include="clsCalcButton.cs" />
-    <Compile Include="clsDivideButton.cs" />
-    <Compile Include="clsGameData.cs" />
-    <Compile Include="clsMinusButton.cs" />
-    <Compile Include="clsMultiplyButton.cs" />
-    <Compile Include="clsNumberButton.cs" />
-    <Compile Include="clsPlusMinusButton.cs" />
-    <Compile Include="clsReverseButton.cs" />
-    <Compile Include="clsShiftButton.cs" />
+    <Compile Include="Button\clsAddButton.cs" />
+    <Compile Include="Button\clsPowButton.cs" />
+    <Compile Include="Button\clsReplaceButton.cs" />
+    <Compile Include="Engine\clsButtonSwitcher.cs" />
+    <Compile Include="Button\Core\clsCalcButton.cs" />
+    <Compile Include="Button\clsDivideButton.cs" />
+    <Compile Include="Engine\clsGameData.cs" />
+    <Compile Include="Button\clsMinusButton.cs" />
+    <Compile Include="Button\clsMultiplyButton.cs" />
+    <Compile Include="Button\clsNumberButton.cs" />
+    <Compile Include="Button\clsPlusMinusButton.cs" />
+    <Compile Include="Button\clsReverseButton.cs" />
+    <Compile Include="Button\clsShiftButton.cs" />
     <Compile Include="clsSolutionFinder.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -104,7 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GameFile.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

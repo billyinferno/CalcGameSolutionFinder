@@ -18,6 +18,11 @@ namespace CalcGameSolutionFinder
         /// </summary>
         public int Number { get; set; }
 
+        /// <summary>
+        /// Number that will be used to Replace on the Button
+        /// </summary>
+        public int NumberReplace { get; set; }
+
         public clsCalcButton() {
             // initialize all the public variable that will be used
             this.Name = "";
@@ -27,7 +32,8 @@ namespace CalcGameSolutionFinder
         /// <summary>
         /// ProcessButton is the main process that will provide the logic of the Calculator Game Button
         /// </summary>
-        public virtual int ProcessButton(int CurrentNumber) {
+        public virtual int ProcessButton(int CurrentNumber)
+        {
             throw new NotImplementedException("Function ProcessButton is not implemented");
         }
     }
